@@ -1,0 +1,53 @@
+<section class="text-gray-400 bg-gray-900 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <input
+      class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
+      placeholder="Find a pokemon">
+    &nbsp;
+    <button
+      class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+      Rechercher
+    </button>&nbsp;
+    <button
+      class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+      Annuler
+    </button>
+    <div class="flex flex-wrap -m-4">
+      <div *ngFor="let pokemon of pokemons" class="lg:w-1/4 md:w-1/2 p-4 w-full">
+        <a class="block relative h-96 rounded overflow-hidden"> <!-- Increased height to 64 -->
+          <img
+            alt="{{ pokemon.name }}"
+            class="object-cover object-center w-full h-full block"
+            src="{{ pokemon.sprite }}">
+        </a>
+        <div class="mt-4">
+          <h2 class="text-white title-font text-lg font-medium">{{ pokemon.name }}</h2>
+          <p class="text-gray-500 text-xs tracking-widest title-font mb-1">Pokédex : {{ pokemon.pokedexId }}</p>
+          <p class="mt-1">Stats : </p>
+          <ul class="text-sm">
+            <li>HP : {{ pokemon.stats.HP }}</li>
+            <li>Attack : {{ pokemon.stats.attack }}</li>
+            <li>Defense : {{ pokemon.stats.defense }}</li>
+            <li>Special Attack : {{ pokemon.stats.special_attack }}</li>
+            <li>Special Defense : {{ pokemon.stats.special_defense }}</li>
+            <li>Speed : {{ pokemon.stats.speed }}</li>
+          </ul>
+          <p class="mt-1">Types :</p>
+          <ul class="text-sm">
+            <li *ngFor="let type of pokemon.apiTypes">
+              <img [src]="type.image" alt="{{ type.name }}" class="inline-block w-4 h-4 mr-2">{{ type.name }}
+            </li>
+          </ul>
+          <p class="mt-1">Evolutions :</p>
+          <ul class="text-sm">
+            <li *ngIf="pokemon.apiEvolutions.length === 0">Pas d'évolution possible</li>
+            <li *ngFor="let evolution of pokemon.apiEvolutions">
+              {{ evolution.name }} (Pokédex ID: {{ evolution.pokedexId }})
+            </li>
+          </ul>
+          <button (click)="goToDetail(pokemon.id)" class="text-blue title-font text-lg font-medium">Plus d'informations --></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
