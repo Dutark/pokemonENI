@@ -28,7 +28,7 @@
               <div *ngIf="contactMsg.get('email')?.invalid && contactMsg.get('email')?.touched"
                    class="text-red-500 text-sm">
                 <div *ngIf="contactMsg.get('email')?.errors?.['required']">Email is required.</div>
-                <div *ngIf="contactMsg.get('email')?.errors?.['email']">Email is invalid.</div>
+                <div *ngIf="contactMsg.get('email')?.errors?.['pattern']">Email is invalid.</div>
               </div>
             </div>
           </div>
