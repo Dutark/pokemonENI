@@ -3,10 +3,13 @@ import {PokemonsComponent} from "./pages/pokemons/pokemons.component";
 import {GenerationsComponent} from "./pages/generations/generations.component";
 import {PokemondetailComponent} from "./pages/pokemons/pokemondetail/pokemondetail.component";
 import {ContactComponent} from "./pages/contact/contact.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
 
 export const routes: Routes = [
   {path: 'pokemons', component: PokemonsComponent},
   {path: 'pokemonDetail/:id', component: PokemondetailComponent},
   {path: 'generations', component: GenerationsComponent},
   {path: 'contact', component: ContactComponent},
+  {path: '', redirectTo: 'pokemons', pathMatch: 'full'},
+  {path: '**', component: NotFoundComponent}
 ];
